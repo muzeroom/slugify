@@ -1,5 +1,6 @@
 'use strict';
 var slug = require('mollusc');
+var uuid = require('uuid');
 
 var charmap = {
   // custom
@@ -91,6 +92,12 @@ var charmap = {
 };
 
 
-module.exports = function(val) {
-  return slug(val, {lower: true, charmap: charmap}) || val;
+module.exports = function(val, opts) {
+  opts = opts || {};
+  var slugifiedVal = slug(val, {lower: true, charmap: charmap}) || val;
+  if(opts.uuid) {
+    var uuidLength = opts.uuidLength || 6;
+    slugifiedVal += '-' + uuid.v4().substring(0, uuidLength);
+  }
+  return slugifiedVal;
 };
