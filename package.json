@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/muzeroom/slugify#readme",
   "dependencies": {
-    "mollusc": "git+https://github.com/muzeroom/mollusc.git"
+    "mollusc": "git+https://github.com/muzeroom/mollusc.git",
+    "uuid": "^2.0.3"
   }
 }
