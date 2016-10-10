@@ -91,10 +91,14 @@ var charmap = {
   '<': 'less', '>': 'greater',
 };
 
-
 module.exports = function(val, opts) {
   opts = opts || {};
-  var slugifiedVal = slug(val, {lower: true, charmap: charmap}) || val;
+  var params = {lower: true}
+  if(!opts.useDefaultCharmap) {
+    params.charmap = charmap;
+  }
+
+  var slugifiedVal = slug(val, params) || val;
   if(opts.uuid) {
     var uuidLength = opts.uuidLength || 6;
     slugifiedVal += '-' + uuid.v4().substring(0, uuidLength);
